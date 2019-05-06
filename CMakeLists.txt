@@ -11,7 +11,6 @@ add_executable(Cpp_Project5
         powerset.hpp
         product.cpp
         product.hpp
-        range.cpp
         range.hpp
         zip.cpp
         zip.hpp
