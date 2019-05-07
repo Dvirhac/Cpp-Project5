@@ -1,3 +1,4 @@
+/*
 //
 // Created by Dvir on 05/05/2019.
 //
@@ -28,7 +29,7 @@ namespace itertools {
                     : ptr(ptr) {}
 
             range& operator*() const {
-                return
+                return *this;
             }
 
             iterator& operator++() {
@@ -69,3 +70,4 @@ namespace itertools {
 
 
 #endif //CPP_PROJECT5_CHAIN_HPP
+*/
