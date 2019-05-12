@@ -6,7 +6,6 @@ set(CMAKE_CXX_STANDARD 17)
 add_executable(Cpp_Project5
         chain.cpp
         chain.hpp
-
         powerset.cpp
         powerset.hpp
         product.cpp
@@ -14,5 +13,5 @@ add_executable(Cpp_Project5
         range.hpp
         zip.cpp
         zip.hpp
-        Test.cpp
-        badkan.h)
+        Demo.cpp
+        )

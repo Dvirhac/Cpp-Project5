@@ -9,56 +9,84 @@
 #include "range.hpp"
 
 namespace itertools {
-    template <typename T>
-    class chain {
-        typedef T*  pointer;
-    private:
-        static range<T> r1;
-        static range<T> r2;
-
+    template <typename T, typename Z>
+    class itChain {
 
     public:
-
-        chain(range<T> r1 , range<T> r2){
-            this->r1 = r1;
-            this->r2 = r2;
-
-        }
-
+        T a ;
+        Z b;
+        itChain(T a , Z b)
+                :a(a),b(b){}
+        itChain()
+        {}
 
         // begin of class iterator
 
         class iterator {
-        private:
-            pointer ptr1;
-            pointer ptr2;
 
         public:
-            iterator(pointer ptr1 = nullptr, pointer ptr2 = nullptr)
-                    : ptr1(ptr1), ptr2(ptr2) {}
 
-            range<T>& operator*() const {
-                return *this->ptr1;
+            decltype(a.begin()) a_startPointer;
+            decltype(a.end()) a_endPointer;
+            decltype(b.begin()) b_startPointer;
+            decltype(b.end()) b_endPointer;
+
+
+            iterator(T& a, Z& b)
+                    :a_startPointer (a.begin()),
+                     a_endPointer(a.end()),
+                     b_startPointer (b.begin()),
+                     b_endPointer(b.end())
+            {}
+
+            iterator(T& a, Z& b,bool F)
+                    :a_startPointer(a.end()),
+                     a_endPointer(a.end()),
+                     b_startPointer(b.end()),
+                     b_endPointer(b.end())
+            {}
+
+            iterator()
+            {}
+
+            auto operator*() const {
+                if (a_startPointer != a_endPointer)
+                    return *a_startPointer;
+
+                else return *b_startPointer;
 
             }
 
             iterator& operator++() {
-                return r1.begin().operator++();
+                if (a_startPointer != a_endPointer)
+                    a_startPointer++;
+                else
+                    b_startPointer++;
+
+                return *this;
             }
 
             const iterator operator++(int) {
-                iterator tmp = r1.begin().operator++(1);
-                ptr1++;
-                return tmp;
+                iterator tmp;
+                if (a_startPointer != a_endPointer){
+                    tmp = a_startPointer;
+                    a_startPointer++;
+                    return tmp;
+                }
+                else {
+                    tmp = b_startPointer;
+                    b_startPointer++;
+                    return tmp;
+                }
 
             }
 
             bool operator==(const iterator &it) const {
-                return ptr1 == it.ptr1;
+                return (a_startPointer == it.a_startPointer || b_startPointer == it.b_startPointer);
             }
 
             bool operator!=(const iterator& it) const {
-                return *ptr1 != *it.ptr1;
+                return (a_startPointer != it.a_startPointer || b_startPointer != it.b_startPointer);
             }
 
         };
@@ -66,14 +94,20 @@ namespace itertools {
         //end of class iterator
 
         iterator begin() {
-            return iterator{&(r1.a), &(r2.a)};
+            return iterator{ a,b };
         }
         iterator end() {
-            return iterator{&(r1.b),&(r2.b)};
+            return iterator{ a,b , false};
+
         }
 
 
     };
+
+    template<typename T, typename Z>
+    itChain<T, Z> chain(T a, Z b) {
+        return itChain<T,Z>(a, b);
+    }
 
 }
 
