@@ -11,10 +11,9 @@
 #include "list"
 
 namespace itertools {
+
     using namespace std;
-
     template<typename T>
-
     class range {
 
         typedef T* pointer;
@@ -25,7 +24,7 @@ namespace itertools {
         range(T a, T b)
                 :a(a),b(b){}
 
-        class iterator {
+    public:class iterator {
         private:
             pointer ptr;
         public:
@@ -42,7 +41,7 @@ namespace itertools {
             }
 
             const iterator operator++(int) {
-                iterator tmp = *this;
+                iterator tmp = this;
                 ptr++;
                 return tmp;
 
