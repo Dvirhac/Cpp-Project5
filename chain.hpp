@@ -1,4 +1,4 @@
-/*
+
 //
 // Created by Dvir on 05/05/2019.
 //
@@ -7,49 +7,58 @@
 #define CPP_PROJECT5_CHAIN_HPP
 
 #include "range.hpp"
+
 namespace itertools {
-    template <typename range>
+    template <typename T>
     class chain {
-        typedef range* pointer;
+        typedef T*  pointer;
     private:
-        range r1;
-        range r2;
+        static range<T> r1;
+        static range<T> r2;
+
+
     public:
 
-        chain(range r1 , range r2)
-                :r1(r1),r2(r2){}
+        chain(range<T> r1 , range<T> r2){
+            this->r1 = r1;
+            this->r2 = r2;
+
+        }
+
 
         // begin of class iterator
 
         class iterator {
         private:
-            pointer ptr;
-        public:
-            iterator(pointer ptr = nullptr)
-                    : ptr(ptr) {}
+            pointer ptr1;
+            pointer ptr2;
 
-            range& operator*() const {
-                return *this;
+        public:
+            iterator(pointer ptr1 = nullptr, pointer ptr2 = nullptr)
+                    : ptr1(ptr1), ptr2(ptr2) {}
+
+            range<T>& operator*() const {
+                return *this->ptr1;
+
             }
 
             iterator& operator++() {
-                ptr++;
-                return *this;
+                return r1.begin().operator++();
             }
 
             const iterator operator++(int) {
-                iterator tmp = *this;
-                ptr++;
+                iterator tmp = r1.begin().operator++(1);
+                ptr1++;
                 return tmp;
 
             }
 
             bool operator==(const iterator &it) const {
-                return ptr == it.ptr;
+                return ptr1 == it.ptr1;
             }
 
             bool operator!=(const iterator& it) const {
-                return ptr != it.ptr;
+                return *ptr1 != *it.ptr1;
             }
 
         };
@@ -57,10 +66,10 @@ namespace itertools {
         //end of class iterator
 
         iterator begin() {
-            return iterator{&r1};
+            return iterator{&(r1.a), &(r2.a)};
         }
         iterator end() {
-            return iterator{&r2};
+            return iterator{&(r1.b),&(r2.b)};
         }
 
 
@@ -70,4 +79,4 @@ namespace itertools {
 
 
 #endif //CPP_PROJECT5_CHAIN_HPP
-*/
+

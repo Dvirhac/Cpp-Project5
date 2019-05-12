@@ -36,7 +36,7 @@ int main() {
     cout << endl << endl << "Standard string: " << endl;
     for (char i: string("hello"))
         cout << i << " ";    // prints h e l l o
-/*
+
     cout << endl << endl << "Chain of two ranges: " << endl;
     for (int i: chain(range(1,4), range(5,8)))
         cout << i;    // prints 123567
@@ -60,6 +60,6 @@ int main() {
         cout << subset;  // {}{1}{2}{1,2}{3}{1,3}{2,3}{1,2,3}
     cout << endl << endl << "Power-set of chain " << endl;
     for (auto subset: powerset(chain(range('a','c'),range('x','z'))))
-        cout << subset;  // {}{a}{b}{a,b}{x}{a,x}{b,x}{a,b,x}{y}{a,y}{b,y}{a,b,y}{x,y}{a,x,y}{b,x,y}{a,b,x,y}*/
+    /*    cout << subset;  // {}{a}{b}{a,b}{x}{a,x}{b,x}{a,b,x}{y}{a,y}{b,y}{a,b,y}{x,y}{a,x,y}{b,x,y}{a,b,x,y}*/
     return 0;
 }
