@@ -13,63 +13,71 @@
 namespace itertools {
 
     using namespace std;
-    template<typename T>
-    class range {
 
-        typedef T* pointer;
+    template<typename T>
+    class itRange {
+
+        typedef T pointer;
+
 
     public:
         T a, b;
 
-        range(T a, T b)
-                :a(a),b(b){}
+        itRange(T a, T b)
+                : a(a), b(b) {}
 
-    public:class iterator {
-        private:
-            pointer ptr;
+    public:
+        class iterator {
         public:
-            iterator(pointer ptr = nullptr)
+            decltype(a) ptr;
+
+            iterator(pointer ptr)
                     : ptr(ptr) {}
 
-            T& operator*() const {
-                return *ptr;
+            auto operator*() const {
+                return ptr;
             }
 
-            iterator& operator++() {
-                (*ptr)++;
+            iterator &operator++() {
+                ptr++;
                 return *this;
             }
 
-            const iterator operator++(int) {
-                iterator tmp = this;
+            const iterator& operator++(int) {
+                iterator tmp = *this;
                 ptr++;
                 return tmp;
 
             }
 
             bool operator==(const iterator &it) const {
-                return *ptr == *it.ptr;
+                return ptr == it.ptr;
             }
 
-            bool operator!=(const iterator& it) const {
-                return *ptr != *it.ptr;
+            bool operator!=(const iterator &it) const {
+                return ptr != it.ptr;
             }
 
         };
 
         //end of class iterator
-
+    public:
         iterator begin() {
-            return iterator{&a};
+            return iterator{a};
         }
+
         iterator end() {
-            return iterator{&b};
+            return iterator{b};
         }
 
 
     };
-}
 
+    template<typename T>
+    itRange<T> range(T a, T b) {
+        return itRange<T>(a, b);
+    }
+}
 
 
 #endif //CPP_PROJECT5_RANGE_HPP
