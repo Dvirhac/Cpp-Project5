@@ -10,7 +10,5 @@ add_executable(Cpp_Project5
         product.cpp
         product.hpp
         range.hpp
-        zip.cpp
-        zip.hpp
         Demo.cpp
-        )
+        zip.hpp)
