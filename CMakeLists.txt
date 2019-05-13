@@ -4,7 +4,6 @@ project(Cpp_Project5)
 set(CMAKE_CXX_STANDARD 17)
 
 add_executable(Cpp_Project5
-        chain.cpp
         chain.hpp
         powerset.cpp
         powerset.hpp
