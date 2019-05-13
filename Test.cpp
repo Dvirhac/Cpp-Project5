@@ -76,31 +76,32 @@ int main() {
 
                 ;
 
-/*//              ===========CHAIN ==============
+//              ===========CHAIN ==============
 
-        itChain c1 (itRange(1,9),"yuval")
-        string resultC1 = "";
-        for(auto i : c1){resultC1 = resultC1 + to_string(i);}//"12345678yuval"
-
-
-        itChain c2 (itRange(-3,7),itRange(9,12))
-        string resultC2 = "";
-        for(auto i : c2){resultC2 = resultC2 + to_string(i);}//"-3-2-1012345691011"
-
-        itChain c3(itRange(a,f),itRange(1.1,5.1))
-        string resultC3 = "";
-        for(auto i : c3){resultC3 = resultC3 + to_string(i);}//"abcde1.12.13.14.1"
+        /*  itChain c1 (itRange(1,9),"yuval");
+   /*     cout << c1.size()<<endl;
+         string resultC1 = "";
+          for(auto i : c1){resultC1 = resultC1 + to_string(i);}//"12345678yuval"
 
 
-        testcase.setname("test RANGE")
-              //  .CHECK_OUTPUT (c1.a, "1")
-               // .CHECK_OUTPUT (c1.b, "y")
-                .CHECK_EQUAL (resultC1, "12345678yuval")
-                .CHECK_EQUAL (resultC2, "-3-2-1012345691011")
-                .CHECK_EQUAL (resultC3 , "abcde1.12.13.14.1")
+          itChain c2 (itRange(-3,7),itRange(9,12))
+          string resultC2 = "";
+          for(auto i : c2){resultC2 = resultC2 + to_string(i);}//"-3-2-1012345691011"
+
+          itChain c3(itRange(a,f),itRange(1.1,5.1))
+          string resultC3 = "";
+          for(auto i : c3){resultC3 = resultC3 + to_string(i);}//"abcde1.12.13.14.1"
 
 
-        ;*/
+          testcase.setname("test RANGE")
+                //  .CHECK_OUTPUT (c1.a, "1")
+                 // .CHECK_OUTPUT (c1.b, "y")
+                  .CHECK_EQUAL (resultC1, "12345678yuval")
+                  .CHECK_EQUAL (resultC2, "-3-2-1012345691011")
+                  .CHECK_EQUAL (resultC3 , "abcde1.12.13.14.1")
+
+
+          ;*/
 
 
 

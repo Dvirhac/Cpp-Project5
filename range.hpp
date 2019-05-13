@@ -69,7 +69,18 @@ namespace itertools {
         iterator end() {
             return iterator{b};
         }
+        int  size(){
+            auto itStart = a;
+            auto itEnd = b;
+            int counter = 0;
 
+            while(itStart != itEnd){
+                counter++;
+                itStart++;
+            }
+            return counter;
+
+        }
 
     };
 
@@ -77,6 +88,8 @@ namespace itertools {
     itRange<T> range(T a, T b) {
         return itRange<T>(a, b);
     }
+
+
 }
 
 

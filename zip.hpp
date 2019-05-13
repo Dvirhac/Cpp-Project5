@@ -64,33 +64,28 @@ namespace itertools {
             }
 
             iterator& operator++() {
-                ++a_startPointer;
-                ++b_startPointer;
+                    ++a_startPointer;
+                    ++b_startPointer;
+
 
                 return *this;
             }
 
-         /*   const iterator operator++(int) {
+            const iterator operator++(int) {
                 iterator tmp;
-                if (a_startPointer != a_endPointer){
-                    tmp = a_startPointer;
-                    a_startPointer++;
-                    return tmp;
-                }
-                else {
-                    tmp = b_startPointer;
-                    b_startPointer++;
-                    return tmp;
-                }
+                tmp = make_pair(a_startPointer,b_startPointer);
+                a_startPointer++;
+                b_startPointer++;
+                return tmp;
+            }
 
-            }*/
 
             bool operator==(const iterator &it) const {
-                return (a_startPointer == it.a_startPointer || b_startPointer == it.b_startPointer);
+                return (a_startPointer == it.a_startPointer && b_startPointer == it.b_startPointer);
             }
 
             bool operator!=(const iterator& it) const {
-                return (a_startPointer != it.a_startPointer || b_startPointer != it.b_startPointer);
+                return (a_startPointer != it.a_startPointer && b_startPointer != it.b_startPointer);
             }
 
         };
@@ -116,7 +111,7 @@ namespace itertools {
 
     template<typename T, typename Z>
     std :: ostream& operator<<(std :: ostream &os, const std :: pair<T, Z>& pair) {
-        os <<  pair.first << ", " << pair.second;
+        os <<  pair.first << "," << pair.second;
         return os;
 
     }

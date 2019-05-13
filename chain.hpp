@@ -6,7 +6,6 @@
 #ifndef CPP_PROJECT5_CHAIN_HPP
 #define CPP_PROJECT5_CHAIN_HPP
 
-#include "range.hpp"
 
 namespace itertools {
     template <typename T, typename Z>
@@ -16,7 +15,7 @@ namespace itertools {
         T a ;
         Z b;
         itChain(T a , Z b)
-                :a(a),b(b){}
+                :a(a),b(b){cout << size()<< endl;}
         itChain()
         {}
 
@@ -98,6 +97,23 @@ namespace itertools {
         }
         iterator end() {
             return iterator{ a,b , false};
+
+        } int  size(){
+            auto itStartA = a.begin();
+            auto itEndA = a.end();
+            auto itStartB = b.begin();
+            auto itEndB = b.end();
+            int counter = 0;
+
+            while(itStartA != itEndA){
+                counter++;
+                itStartA++;
+            }
+            while(itStartB != itEndB){
+                counter++;
+                itStartB++;
+            }
+            return counter;
 
         }
 
