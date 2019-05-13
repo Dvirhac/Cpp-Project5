@@ -1,11 +1,9 @@
-
 //
-// Created by Dvir on 05/05/2019.
+// Created by YuvalAmar on 5/13/2019.
 //
 
-#ifndef CPP_PROJECT5_CHAIN_HPP
-#define CPP_PROJECT5_CHAIN_HPP
-
+#ifndef CPP_PROJECT5_ZIP_HPP
+#define CPP_PROJECT5_ZIP_HPP
 #include <iosfwd>
 #include <iostream>
 #include "utility"
@@ -66,13 +64,13 @@ namespace itertools {
             }
 
             iterator& operator++() {
-                a_startPointer++;
-                b_startPointer++;
+                ++a_startPointer;
+                ++b_startPointer;
 
                 return *this;
             }
 
-            const iterator operator++(int) {
+         /*   const iterator operator++(int) {
                 iterator tmp;
                 if (a_startPointer != a_endPointer){
                     tmp = a_startPointer;
@@ -85,7 +83,7 @@ namespace itertools {
                     return tmp;
                 }
 
-            }
+            }*/
 
             bool operator==(const iterator &it) const {
                 return (a_startPointer == it.a_startPointer || b_startPointer == it.b_startPointer);
@@ -124,7 +122,4 @@ namespace itertools {
     }
 
 }
-
-
-#endif //CPP_PROJECT5_CHAIN_HPP
-
+#endif //CPP_PROJECT5_ZIP_HPP
