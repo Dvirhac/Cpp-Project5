@@ -41,33 +41,14 @@ namespace itertools {
                      b_endPointer(b.end())
             {}
 
-            iterator(const T& a,const  Z& b,bool F)
+            iterator(const T& a,const  Z& b,int i)
                     :a_startPointer(a.end()),
-                     //saveFirst(b.end()),
                      a_endPointer(a.end()),
                      b_startPointer(b.end()),
                      b_endPointer(b.end())
 
 
             {}
-          /*  iterator(const T& a,const  Z& b)
-                    :a_startPointer (a.begin()),
-                     saveFirst(b.begin()),
-                     a_endPointer(a.end()),
-                     b_startPointer (b.begin()),
-                     b_endPointer(b.end())
-            {}
-
-            iterator(const T& a,const  Z& b,bool F)
-                    :a_startPointer(a.end()),
-                    //saveFirst(b.end()),
-                     a_endPointer(a.end()),
-                     b_startPointer(b.end()),
-                     b_endPointer(b.end())
-
-
-            {}*/
-
 
             iterator()
             {}
@@ -84,30 +65,14 @@ namespace itertools {
 
                 }
 
-                    if (b_startPointer == b_endPointer){
+                if (b_startPointer == b_endPointer){
                     b_startPointer = saveFirst;
-                        ++a_startPointer;
+                    ++a_startPointer;
                 }
 
                 return *this;
             }
 
-
-           /* const iterator operator++(int) {
-                iterator tmp;
-                tmp = make_pair(a_startPointer,b_startPointer);
-                if (a_startPointer != a_endPointer){
-                    b_startPointer++;
-
-                }
-
-                if (b_startPointer == b_endPointer){
-                    b_startPointer = saveFirst;
-                    a_startPointer++;
-                }
-                return tmp;
-
-            }*/
 
             bool operator==(const iterator &it) const {
                 return (a_startPointer == it.a_startPointer && b_startPointer == it.b_startPointer);
@@ -125,16 +90,9 @@ namespace itertools {
             return iterator{ a,b };
         }
         iterator end() const {
-            return iterator{ a,b , false};
+            return iterator{ a,b , 1};
 
         }
-    /*    const iterator begin() const {
-            return iterator{a,b};
-        }
-
-        const iterator end() const{
-            return iterator{a,b , false};
-        }*/
 
         int  length(){
             return  a.length() + b.length();
