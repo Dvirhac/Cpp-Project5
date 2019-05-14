@@ -1,16 +1,26 @@
-#include <iostream>
-using namespace std;
 
+using namespace std;
+#include <iostream>
 #include "chain.hpp"
 #include "powerset.hpp"
 #include "product.hpp"
 #include "range.hpp"
 #include "zip.hpp"
 #include "badkan.h"
+#include "string"
 
 #define COMMA ,
 
 using namespace itertools;
+
+
+template<typename Iterable>
+string iterable_to_string( Iterable& iterable) {
+    ostringstream ostr;
+    for (decltype(*iterable.begin()) i: iterable)
+        ostr << i << ",";
+    return ostr.str();
+}
 
 int main() {
 
@@ -22,86 +32,78 @@ int main() {
 
 //              ===========RANGE ==============
 
-        itRange intRange(3,7);
-        itRange intRange2(-4,3);
-        auto intI1  = intRange.begin();
-        auto intI2 = intRange.begin();
-        string result1 = "";
-        string result2 = "";
-        for(int i : intRange){
-            result1 = result1 + to_string(i);
-        }
-        for(int i : intRange2){
-            result2 = result2 + to_string(i);
-        }
-        itRange doubleRange(4.4,10.4);
-        auto doubleI1  = doubleRange.begin();
-        auto doubleI2 = doubleRange.begin();
-        doubleI1++;
-        doubleI1++;
-        char x = 'd';
-        char y = 'h';
-        itRange charRange(x,y);
-        auto charI1 = charRange.begin();
-        auto charI2 = charRange.begin();
-        charI2++;
-        string resultChar = "";
-        for(char i : charRange){
-            resultChar = resultChar + i;
-        }
-        string resultDouble = "";
-        for(double i : doubleRange){
+        itRange<int> intRange(3,7);
+        itRange<int> intRange2(-1,3);
+       /* auto it1 = intRange.begin();
+        auto it2 = intRange.end();
+*/
 
-            resultDouble = resultDouble + to_string(i);
-        }
-        cout<<resultDouble<<endl;
 
-        testcase.setname("test RANGE")
-                .CHECK_OUTPUT (intRange.a, "3")
-                .CHECK_OUTPUT (intRange.b, "7")
-                .CHECK_OUTPUT (intRange2.a, "-4")
-                .CHECK_OUTPUT (intRange2.b, "3")
-                .CHECK_EQUAL (intI1 != intI2, false)
-                .CHECK_EQUAL ( result1=="3456", true)
-                .CHECK_EQUAL ( result2=="-4-3-2-1012", true)
-                .CHECK_OUTPUT (doubleRange.a, "4.4")
-                .CHECK_OUTPUT (doubleRange.b, "10.4")
-                .CHECK_EQUAL (doubleI1 == doubleI1, true)
-                .CHECK_EQUAL (resultDouble == "4.45.46.47.48.49.4", true)
-                .CHECK_OUTPUT (charRange.a, "d")
-                .CHECK_OUTPUT (charRange.b, "h")
-                .CHECK_EQUAL (charI1 != charI2, true)
-                .CHECK_EQUAL (charI1 == charI2, false)
-                .CHECK_EQUAL (resultChar == "defg", true)
+        itRange<double> doubleRange(2.1,7.1);
+        itRange<double> doubleRange2(10.1,14.1);
+        itRange<char> charRange('a','d');
+        itRange<char> charRange2('f','h');
+        itRange<char> charRange3('d','g');
+
+
+
+        //              ===========chain ==============
+        itChain<itRange<int>,itRange<int>> chain1(intRange,intRange2);
+        itChain<itRange<char>,string> chain4(charRange,"yuvaldvir");
+        itChain<string,itRange<char>> chain5("yuvaldvir",charRange2);
+        //              ===========ZIP ==============
+        itZip<itRange<int>,string> zip1(intRange,"cpp5");
+        itZip<itRange<double>,string> zip2(doubleRange,"yuval");
+        itZip<itRange<char>,string> zip3(charRange,"dvir1");
+        itZip<itZip<itRange<int>,string>,itZip<itRange<double>,string>> zipOfZip(zip1,zip2);
+        //              ===========PROUDCT ==============
+        itProduct<itRange<int>,string> proudct1(intRange,"yuval");
+        itProduct<itRange<double>,string> proudct2(doubleRange,"Dvir");
+        itProduct<string,string> proudct3("yuval","dvir");
+        //              ===========POWERSET ==============
+       /* itPowerSet<itRange<int>> powerSet1(intRange);
+        itPowerSet<itRange<char>> powerSet2(charRange3);*/
+
+
+
+        cout << iterable_to_string(zip2)<<endl;
+
+        testcase.setname("TEST RANGE")
+
+                .CHECK_EQUAL (iterable_to_string(intRange).compare("3,4,5,6, "), true)
+                .CHECK_EQUAL (iterable_to_string(intRange2).compare("-4,-3,-2,-1,0,1,2 "), true)
+                .CHECK_EQUAL (iterable_to_string(doubleRange).compare("2.1,3.1,4.1,5.1,6.1, "),true )
+                .CHECK_EQUAL (iterable_to_string(doubleRange2).compare("10.1,11.1,12.1,13.1, "),true )
+                .CHECK_EQUAL (iterable_to_string(charRange).compare("a,b,c, "),true )
+                .CHECK_EQUAL (iterable_to_string(charRange2).compare("f,g, "), true)
+                .CHECK_EQUAL (iterable_to_string(charRange3).compare("d,e,f, "),true )
+                //.CHECK_EQUAL (it1 != it2, true )
+
+                ;
+        testcase.setname("TEST CHAIN")
+
+                .CHECK_EQUAL (iterable_to_string(chain1).compare("3,4,5,6,-4,-3,-2,-1,0,1,2"), true)
+                .CHECK_EQUAL (iterable_to_string(chain4).compare("a,b,c,y,u,v,a,l,d,v,i,r,"), true)
+                .CHECK_EQUAL (iterable_to_string(chain5).compare("y,u,v,a,l,d,v,i,r,f,g"),true )
+
+                ;
+        testcase.setname("TEST PRODUCT")
+
+                .CHECK_EQUAL (iterable_to_string(proudct1).compare("3f,3g,4f,4g,5f,5g,6f,6g,"), true)
+                .CHECK_EQUAL (iterable_to_string(proudct2).compare("2.1,D,2.1,v,2.1,i,2.1,r,3.1,D,3.1,v,3.1,i,3.1,r,4.1,D,4.1,v,4.1,i,4.1,r,5.1,D,5.1,v,5.1,i,5.1,r,6.1,D,6.1,v,6.1,i,6.1,r, "), true)
+                .CHECK_EQUAL (iterable_to_string(proudct3).compare("2.1,3.1,4.1,5.1,6.1,3,4,5,6,"),true )
+
+
+                ;
+        testcase.setname("TEST ZIP")
+
+                .CHECK_EQUAL (iterable_to_string(zip1).compare("3,c,4,p,5,p,6,5, "), true)
+                .CHECK_EQUAL (iterable_to_string(zip2).compare("2.1,y,3.1,u,4.1,v,5.1,a,6.1,l, "), true)
+                .CHECK_EQUAL (iterable_to_string(proudct3).compare("2.1,3.1,4.1,5.1,6.1,3,4,5,6,"),true )
+
 
                 ;
 
-//              ===========CHAIN ==============
-
-        /*  itChain c1 (itRange(1,9),"yuval");
-   /*     cout << c1.size()<<endl;
-         string resultC1 = "";
-          for(auto i : c1){resultC1 = resultC1 + to_string(i);}//"12345678yuval"
-
-
-          itChain c2 (itRange(-3,7),itRange(9,12))
-          string resultC2 = "";
-          for(auto i : c2){resultC2 = resultC2 + to_string(i);}//"-3-2-1012345691011"
-
-          itChain c3(itRange(a,f),itRange(1.1,5.1))
-          string resultC3 = "";
-          for(auto i : c3){resultC3 = resultC3 + to_string(i);}//"abcde1.12.13.14.1"
-
-
-          testcase.setname("test RANGE")
-                //  .CHECK_OUTPUT (c1.a, "1")
-                 // .CHECK_OUTPUT (c1.b, "y")
-                  .CHECK_EQUAL (resultC1, "12345678yuval")
-                  .CHECK_EQUAL (resultC2, "-3-2-1012345691011")
-                  .CHECK_EQUAL (resultC3 , "abcde1.12.13.14.1")
-
-
-          ;*/
 
 
 

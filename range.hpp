@@ -29,14 +29,22 @@ namespace itertools {
     public:
         class iterator {
         public:
-            decltype(a) ptr;
+            T ptr;
 
-            iterator(pointer ptr)
+
+
+            iterator(pointer& ptr)
                     : ptr(ptr) {}
+
+            iterator(const pointer& ptr)
+                    : ptr(ptr) {}
+
+
 
             auto operator*() const {
                 return ptr;
             }
+
 
             iterator &operator++() {
                 ptr++;
@@ -55,7 +63,7 @@ namespace itertools {
             }
 
             bool operator!=(const iterator &it) const {
-                return ptr != it.ptr;
+                return !(ptr == it.ptr);
             }
 
         };
@@ -69,7 +77,14 @@ namespace itertools {
         iterator end() {
             return iterator{b};
         }
-        int  size(){
+        const iterator begin() const {
+            return iterator{a};
+        }
+
+        const iterator end() const{
+            return iterator{b};
+        }
+        int  length(){
             auto itStart = a;
             auto itEnd = b;
             int counter = 0;

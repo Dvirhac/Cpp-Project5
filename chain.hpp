@@ -14,8 +14,9 @@ namespace itertools {
     public:
         T a ;
         Z b;
+
         itChain(T a , Z b)
-                :a(a),b(b){cout << size()<< endl;}
+                :a(a),b(b){}
         itChain()
         {}
 
@@ -44,6 +45,21 @@ namespace itertools {
                      b_startPointer(b.end()),
                      b_endPointer(b.end())
             {}
+            iterator(const T& a, const Z& b)
+                    :a_startPointer (a.begin()),
+                     a_endPointer(a.end()),
+                     b_startPointer (b.begin()),
+                     b_endPointer(b.end())
+            {}
+
+            iterator(const T& a,const  Z& b,bool F)
+                    :a_startPointer(a.end()),
+                     a_endPointer(a.end()),
+                     b_startPointer(b.end()),
+                     b_endPointer(b.end())
+            {}
+
+
 
             iterator()
             {}
@@ -53,13 +69,12 @@ namespace itertools {
                     return *a_startPointer;
 
                 else return *b_startPointer;
-
             }
 
             iterator& operator++() {
                 if (a_startPointer != a_endPointer)
                     a_startPointer++;
-                else
+                else if (b_startPointer != b_endPointer)
                     b_startPointer++;
 
                 return *this;
@@ -77,15 +92,14 @@ namespace itertools {
                     b_startPointer++;
                     return tmp;
                 }
-
             }
 
             bool operator==(const iterator &it) const {
-                return (a_startPointer == it.a_startPointer || b_startPointer == it.b_startPointer);
+                return (a_startPointer == it.a_startPointer && b_startPointer == it.b_startPointer);
             }
 
             bool operator!=(const iterator& it) const {
-                return (a_startPointer != it.a_startPointer || b_startPointer != it.b_startPointer);
+                return (a_startPointer != it.a_startPointer && b_startPointer != it.b_startPointer);
             }
 
         };
@@ -98,7 +112,15 @@ namespace itertools {
         iterator end() {
             return iterator{ a,b , false};
 
-        } int  size(){
+        }
+        const iterator begin() const {
+            return iterator{a,b};
+        }
+
+        const iterator end() const{
+            return iterator{a,b , false};
+        }
+        int  length(){
             auto itStartA = a.begin();
             auto itEndA = a.end();
             auto itStartB = b.begin();

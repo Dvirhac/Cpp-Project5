@@ -1,4 +1,5 @@
 /*
+
 //
 // Created by Dvir on 05/05/2019.
 //
@@ -7,14 +8,18 @@
 #define CPP_PROJECT5_POWERSET_HPP
 
 #include "set"
-
+#include <bits/stdc++.h>
+#include "iostream"
 
 namespace itertools {
-    template <typename T, typename Z>
+    template <typename T>
     class itPowerSet {
 
     public:
+
         T a ;
+        int size = a.length();
+        int count = pow(2,size);
 
         itPowerSet(T a )
                 :a(a){}
@@ -29,7 +34,150 @@ namespace itertools {
 
             decltype(a.begin()) a_startPointer;
             decltype(a.end()) a_endPointer;
-            decltype(a.begin()) saveFirst;
+            string subset = " ";
+
+
+            iterator(T& a)
+
+
+            {}
+
+
+            iterator()
+            {}
+
+            auto operator*() const {
+
+                return *this;
+            }
+
+            iterator& operator++() {
+
+
+                return *this;
+            }
+
+
+            const iterator operator++(int) {
+
+                return tmp;
+
+
+            }
+
+            bool operator==(const iterator &it) const {
+
+            }
+
+            bool operator!=(const iterator& it) const {
+
+            }
+
+        };
+
+        //end of class iterator
+
+        iterator begin() {
+            return iterator{a};
+        }
+        iterator end() {
+            return iterator{a};
+
+        }
+
+    };
+
+    template<typename T>
+    itPowerSet<T> powerset(T a) {
+        return itPowerSet<T>(a);
+    }
+
+
+*/
+/*    template<typename T>
+    std:: ostream& operator<<(std :: ostream &os, const set<T>& subset) {
+        os << "{";
+        for (auto i : subset) {
+            os << i << ",";
+        }
+        os << "]";
+        return os;
+
+    }*//*
+
+};
+
+
+#endif //CPP_PROJECT5_POWERSET_HPP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*/
+/*
+
+//
+// Created by Dvir on 05/05/2019.
+//
+
+#ifndef CPP_PROJECT5_POWERSET_HPP
+#define CPP_PROJECT5_POWERSET_HPP
+
+#include "set"
+#include <bits/stdc++.h>
+#include "iostream"
+
+namespace itertools {
+    template <typename T>
+    class itPowerSet {
+
+    public:
+
+        T a ;
+        int size = a.length();
+        int count = pow(2,size);
+
+        itPowerSet(T a )
+                :a(a){}
+        itPowerSet()
+        {}
+
+        // begin of class iterator
+
+        class iterator {
+
+        public:
+
+            decltype(a.begin()) a_startPointer;
+            decltype(a.end()) a_endPointer;
+            string subset = " ";
 
 
             iterator(T& a)
@@ -38,85 +186,81 @@ namespace itertools {
 
             {}
 
-            iterator(T& a, Z& b,bool F)
-                    :a_startPointer(a.end()),
-                     a_endPointer(a.end())
-
-
-
-            {}
 
             iterator()
             {}
 
             auto operator*() const {
 
-                return std :: make_pair(*a_startPointer, *b_startPointer);
-
+                return *this;
             }
 
             iterator& operator++() {
-                if (a_startPointer != a_endPointer){
-                    b_startPointer++;
 
-                }
-
-                if (b_startPointer == b_endPointer){
-                    b_startPointer = saveFirst;
-                    a_startPointer++;
-                }
-
+                a_startPointer++;
                 return *this;
             }
 
 
             const iterator operator++(int) {
                 iterator tmp;
-                tmp = make_pair(a_startPointer,b_startPointer);
-                if (a_startPointer != a_endPointer){
-                    b_startPointer++;
-
-                }
-
-                if (b_startPointer == b_endPointer){
-                    b_startPointer = saveFirst;
-                    a_startPointer++;
-                }
+                tmp = a_startPointer;
+                a_startPointer++;
                 return tmp;
+
 
             }
 
             bool operator==(const iterator &it) const {
-                return (a_startPointer == it.a_startPointer && b_startPointer == it.b_startPointer);
+                return (a_startPointer == it.a_startPointer && a_endPointer == a_endPointer);
             }
 
             bool operator!=(const iterator& it) const {
-                return (a_startPointer != it.a_startPointer && b_startPointer != it.b_startPointer);
+                return (a_startPointer != it.a_startPointer && a_endPointer != a_endPointer);
             }
 
         };
 
         //end of class iterator
 
-        iterator begin() {
-            return iterator{ a,b };
+        iterator begin() const{
+            return iterator{ a};
         }
-        iterator end() {
-            return iterator{ a,b , false};
+        iterator end() const{
+            return iterator{a};
 
+        }
+        std::set<T> buildSet(){
+            std::set<T> set1;
+            int size = a.length();
+            int count = pow(2,size);
+            for (auto i = a.begin(); i < count; i++)
+            {
+
+                for (auto j = a.begin(); j < size; j++)
+                {
+                    if ((i & (1 << j)) > 0)
+                       set1.insert(i);
+                }
+
+            }
+            return set1;
         }
 
 
     };
 
-    template<typename T, typename Z>
-    itPowerSet<T, Z> powerset(T a, Z b) {
-        return itPowerSet<T,Z>(a, b);
+    template<typename T>
+    itPowerSet<T> powerset(T a) {
+        return itPowerSet<T>(a);
     }
 
 
-    template<typename T>
-    std :: ostream& operator<<(std :: ostream &os, const std :: set<T>& subset) {
+*//*
+
+*/
+/*    template<typename T>
+    std:: ostream& operator<<(std :: ostream &os, const set<T>& subset) {
         os << "{";
         for (auto i : subset) {
             os << i << ",";
@@ -124,9 +268,14 @@ namespace itertools {
         os << "]";
         return os;
 
-    }
+    }*//*
+*/
+/*
+
 };
 
 
 #endif //CPP_PROJECT5_POWERSET_HPP
+
 */
+
