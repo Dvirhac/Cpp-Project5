@@ -12,7 +12,7 @@ namespace itertools {
     class itChain {
 
     public:
-      const T a;
+        const T a;
         const Z b;
 
         itChain(const T& a , const Z& b)
@@ -39,26 +39,12 @@ namespace itertools {
                      b_endPointer(b.end())
             {}
 
-            iterator(const T& a, const Z& b,bool F)
+            iterator(const T& a, const Z& b,int i)
                     :a_startPointer(a.end()),
                      a_endPointer(a.end()),
                      b_startPointer(b.end()),
                      b_endPointer(b.end())
             {}
-     /*       iterator(const T& a, const Z& b,int i)
-                    :a_startPointer (a.begin()),
-                     a_endPointer(a.end()),
-                     b_startPointer (b.begin()),
-                     b_endPointer(b.end())
-            {}
-
-            iterator(const T& a,const  Z& b,bool F)
-                    :a_startPointer(a.end()),
-                     a_endPointer(a.end()),
-                     b_startPointer(b.end()),
-                     b_endPointer(b.end())
-            {}*/
-
 
 
             iterator()
@@ -71,7 +57,7 @@ namespace itertools {
                 else return *b_startPointer;
             }
 
-             iterator& operator++() {
+            iterator& operator++() {
                 if (a_startPointer != a_endPointer)
                     ++a_startPointer;
                 else if (b_startPointer != b_endPointer)
@@ -80,19 +66,6 @@ namespace itertools {
                 return *this;
             }
 
-            /*const iterator operator++(int) {
-                iterator tmp;
-                if (a_startPointer != a_endPointer){
-                    tmp = a_startPointer;
-                    a_startPointer++;
-                    return tmp;
-                }
-                else {
-                    tmp = b_startPointer;
-                    b_startPointer++;
-                    return tmp;
-                }
-            }*/
 
             bool operator==(const iterator &it) const {
                 return (a_startPointer == it.a_startPointer || b_startPointer == it.b_startPointer);
@@ -110,16 +83,10 @@ namespace itertools {
             return iterator{ a,b };
         }
         iterator end() const {
-            return iterator{ a,b , false};
+            return iterator{ a,b , 1};
         }
 
-    /*    const iterator begin() const {
-            return  iterator{a,b};
-        }
 
-        const iterator end() const{
-            return iterator{a,b , false};
-        }*/
         int  length() const {
             auto itStartA = a.begin();
             auto itEndA = a.end();
