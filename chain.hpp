@@ -45,7 +45,7 @@ namespace itertools {
                      b_startPointer(b.end()),
                      b_endPointer(b.end())
             {}
-            iterator(const T& a, const Z& b)
+     /*       iterator(const T& a, const Z& b,int i)
                     :a_startPointer (a.begin()),
                      a_endPointer(a.end()),
                      b_startPointer (b.begin()),
@@ -57,7 +57,7 @@ namespace itertools {
                      a_endPointer(a.end()),
                      b_startPointer(b.end()),
                      b_endPointer(b.end())
-            {}
+            {}*/
 
 
 
@@ -95,11 +95,11 @@ namespace itertools {
             }
 
             bool operator==(const iterator &it) const {
-                return (a_startPointer == it.a_startPointer && b_startPointer == it.b_startPointer);
+                return (a_startPointer == it.a_startPointer || b_startPointer == it.b_startPointer);
             }
 
             bool operator!=(const iterator& it) const {
-                return (a_startPointer != it.a_startPointer && b_startPointer != it.b_startPointer);
+                return (a_startPointer != it.a_startPointer || b_startPointer != it.b_startPointer);
             }
 
         };
@@ -111,15 +111,15 @@ namespace itertools {
         }
         iterator end() {
             return iterator{ a,b , false};
-
         }
-        const iterator begin() const {
-            return iterator{a,b};
+
+    /*    const iterator begin() const {
+            return  iterator{a,b};
         }
 
         const iterator end() const{
             return iterator{a,b , false};
-        }
+        }*/
         int  length(){
             auto itStartA = a.begin();
             auto itEndA = a.end();

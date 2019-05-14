@@ -50,7 +50,7 @@ namespace itertools {
 
 
             {}
-            iterator(const T& a,const  Z& b)
+          /*  iterator(const T& a,const  Z& b)
                     :a_startPointer (a.begin()),
                      saveFirst(b.begin()),
                      a_endPointer(a.end()),
@@ -66,7 +66,7 @@ namespace itertools {
                      b_endPointer(b.end())
 
 
-            {}
+            {}*/
 
 
             iterator()
@@ -128,13 +128,13 @@ namespace itertools {
             return iterator{ a,b , false};
 
         }
-        const iterator begin() const {
+    /*    const iterator begin() const {
             return iterator{a,b};
         }
 
         const iterator end() const{
             return iterator{a,b , false};
-        }
+        }*/
 
         int  length(){
             return  a.length() + b.length();
