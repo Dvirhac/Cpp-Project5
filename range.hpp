@@ -36,8 +36,8 @@ namespace itertools {
             iterator(pointer& ptr)
                     : ptr(ptr) {}
 
-            iterator(const pointer& ptr)
-                    : ptr(ptr) {}
+       /*     iterator(const pointer& ptr)
+                    : ptr(ptr) {}*/
 
 
 
@@ -77,13 +77,13 @@ namespace itertools {
         iterator end() {
             return iterator{b};
         }
-        const iterator begin() const {
+   /*     const iterator begin() const {
             return iterator{a};
         }
 
         const iterator end() const{
             return iterator{b};
-        }
+        }*/
         int  length(){
             auto itStart = a;
             auto itEnd = b;
