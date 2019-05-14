@@ -13,8 +13,8 @@ namespace itertools {
     class itProduct {
 
     public:
-        T a ;
-        Z b;
+        const T a ;
+        const Z b;
         itProduct(T a , Z b)
                 :a(a),b(b){}
         itProduct()
@@ -33,7 +33,7 @@ namespace itertools {
             decltype(b.begin()) saveFirst;
 
 
-            iterator(T& a, Z& b)
+            iterator(const T& a,const  Z& b)
                     :a_startPointer (a.begin()),
                      saveFirst(b.begin()),
                      a_endPointer(a.end()),
@@ -41,7 +41,7 @@ namespace itertools {
                      b_endPointer(b.end())
             {}
 
-            iterator(T& a, Z& b,bool F)
+            iterator(const T& a,const  Z& b,bool F)
                     :a_startPointer(a.end()),
                      //saveFirst(b.end()),
                      a_endPointer(a.end()),
@@ -80,20 +80,20 @@ namespace itertools {
 
             iterator& operator++() {
                 if (a_startPointer != a_endPointer){
-                    b_startPointer++;
+                    ++b_startPointer;
 
                 }
 
                     if (b_startPointer == b_endPointer){
                     b_startPointer = saveFirst;
-                    a_startPointer++;
+                        ++a_startPointer;
                 }
 
                 return *this;
             }
 
 
-            const iterator operator++(int) {
+           /* const iterator operator++(int) {
                 iterator tmp;
                 tmp = make_pair(a_startPointer,b_startPointer);
                 if (a_startPointer != a_endPointer){
@@ -107,7 +107,7 @@ namespace itertools {
                 }
                 return tmp;
 
-            }
+            }*/
 
             bool operator==(const iterator &it) const {
                 return (a_startPointer == it.a_startPointer && b_startPointer == it.b_startPointer);
@@ -121,10 +121,10 @@ namespace itertools {
 
         //end of class iterator
 
-        iterator begin() {
+        iterator begin() const {
             return iterator{ a,b };
         }
-        iterator end() {
+        iterator end() const {
             return iterator{ a,b , false};
 
         }

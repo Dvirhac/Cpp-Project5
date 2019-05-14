@@ -21,9 +21,10 @@ namespace itertools {
 
 
     public:
-        T a, b;
+       const T a;
+       const T b;
 
-        itRange(T a, T b)
+        itRange(const T& a,const T& b)
                 : a(a), b(b) {}
 
     public:
@@ -33,7 +34,7 @@ namespace itertools {
 
 
 
-            iterator(pointer& ptr)
+            iterator(const pointer ptr)
                     : ptr(ptr) {}
 
        /*     iterator(const pointer& ptr)
@@ -41,17 +42,17 @@ namespace itertools {
 
 
 
-            auto operator*() const {
+            T operator*() const {
                 return ptr;
             }
 
 
-            iterator &operator++() {
+            const iterator &operator++() {
                 ptr++;
                 return *this;
             }
 
-            const iterator& operator++(int) {
+            const iterator operator++(int) {
                 iterator tmp = *this;
                 ptr++;
                 return tmp;
@@ -70,11 +71,11 @@ namespace itertools {
 
         //end of class iterator
     public:
-        iterator begin() {
+         iterator begin() const {
             return iterator{a};
         }
 
-        iterator end() {
+         iterator end() const {
             return iterator{b};
         }
    /*     const iterator begin() const {
@@ -84,7 +85,7 @@ namespace itertools {
         const iterator end() const{
             return iterator{b};
         }*/
-        int  length(){
+        int  length()const {
             auto itStart = a;
             auto itEnd = b;
             int counter = 0;

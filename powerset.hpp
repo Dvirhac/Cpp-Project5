@@ -10,6 +10,9 @@
 #include "set"
 #include <bits/stdc++.h>
 #include "iostream"
+#include <math.h>
+
+
 
 namespace itertools {
     template<typename T>
@@ -17,12 +20,12 @@ namespace itertools {
 
     public:
 
-        T a;
-        int size = a.length();
+        const T a;
+        const int size = a.length();
         int count = pow(2, size);
 
 
-        itPowerSet(T a)
+        itPowerSet(const T& a)
                 : a(a) {}
 
         itPowerSet() {}
@@ -40,14 +43,14 @@ namespace itertools {
             string subset;
 
 
-            iterator(T &a) :
+            iterator(const T& a) :
                     a_startPointer(a.begin()),
                     a_endPointer(a.end()),
                     size(a.length()),
                     length(pow(2, size)),
                     subset("") {}
 
-            iterator(T &a, bool f) :
+            iterator(const T& a, bool f) :
                     a_startPointer(a.end()),
                     a_endPointer(a.end()) {}
 
@@ -59,7 +62,7 @@ namespace itertools {
                 return subset;
             }
 
-            iterator &operator++() {
+            iterator& operator++() {
 
                 for (int i = 0; i < length; i++) {
                     for (int i; i < length; i++) {
@@ -72,7 +75,7 @@ namespace itertools {
 
 
                     subset += " }";
-                    a_startPointer++;
+                    ++a_startPointer;
                     return *this;
                 }
             }
@@ -101,19 +104,19 @@ namespace itertools {
 
             //end of class iterator
 
-            iterator begin() {
-                return iterator(this->a);
+            iterator begin() const{
+                return iterator(a);
             }
 
-            iterator end() {
-                return iterator(this->a, false);
+            iterator end() const {
+                return iterator(a, false);
 
             }
 
         };
 
         template<typename T>
-        itPowerSet<T> powerset(T a) {
+        itPowerSet<T> powerset( T a) {
             return itPowerSet<T>(a);
         }
 

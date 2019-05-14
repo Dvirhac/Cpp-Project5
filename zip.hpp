@@ -13,10 +13,10 @@ namespace itertools {
     class itZip {
 
     public:
-        T a ;
-        Z b;
+       const T a ;
+        const Z b;
 
-        itZip(T a , Z b)
+        itZip(const T& a ,const Z& b)
                 :a(a),b(b){}
         itZip()
         {}
@@ -36,7 +36,7 @@ namespace itertools {
 
 
 
-            iterator(T& a, Z& b)
+            iterator(const T& a,const  Z& b)
                     :a_startPointer (a.begin()),
                      a_endPointer(a.end()),
                      b_startPointer (b.begin()),
@@ -45,7 +45,7 @@ namespace itertools {
 
             {}
 
-            iterator(T& a, Z& b,bool F)
+            iterator(const T& a,const  Z& b,bool F)
                     :a_startPointer(a.end()),
                      a_endPointer(a.end()),
                      b_startPointer(b.end()),
@@ -77,6 +77,7 @@ namespace itertools {
             }
 
             iterator& operator++() {
+                if(a_startPointer!=a_endPointer)
                     ++a_startPointer;
                     ++b_startPointer;
 
@@ -84,13 +85,13 @@ namespace itertools {
                 return *this;
             }
 
-            const iterator operator++(int) {
+          /*  const iterator operator++(int) {
                 iterator tmp;
                 tmp = make_pair(a_startPointer,b_startPointer);
                 a_startPointer++;
                 b_startPointer++;
                 return tmp;
-            }
+            }*/
 
 
             bool operator==(const iterator &it) const {
@@ -105,10 +106,10 @@ namespace itertools {
 
         //end of class iterator
 
-        iterator begin() {
+        iterator begin() const{
             return iterator{ a,b };
         }
-        iterator end() {
+        iterator end() const {
             return iterator{ a,b , false};
 
         }

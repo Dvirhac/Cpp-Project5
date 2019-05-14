@@ -12,10 +12,10 @@ namespace itertools {
     class itChain {
 
     public:
-        T a ;
-        Z b;
+      const T a;
+        const Z b;
 
-        itChain(T a , Z b)
+        itChain(const T& a , const Z& b)
                 :a(a),b(b){}
         itChain()
         {}
@@ -32,14 +32,14 @@ namespace itertools {
             decltype(b.end()) b_endPointer;
 
 
-            iterator(T& a, Z& b)
+            iterator(const T& a,const  Z& b)
                     :a_startPointer (a.begin()),
                      a_endPointer(a.end()),
                      b_startPointer (b.begin()),
                      b_endPointer(b.end())
             {}
 
-            iterator(T& a, Z& b,bool F)
+            iterator(const T& a, const Z& b,bool F)
                     :a_startPointer(a.end()),
                      a_endPointer(a.end()),
                      b_startPointer(b.end()),
@@ -71,16 +71,16 @@ namespace itertools {
                 else return *b_startPointer;
             }
 
-            iterator& operator++() {
+             iterator& operator++() {
                 if (a_startPointer != a_endPointer)
-                    a_startPointer++;
+                    ++a_startPointer;
                 else if (b_startPointer != b_endPointer)
-                    b_startPointer++;
+                    ++b_startPointer;
 
                 return *this;
             }
 
-            const iterator operator++(int) {
+            /*const iterator operator++(int) {
                 iterator tmp;
                 if (a_startPointer != a_endPointer){
                     tmp = a_startPointer;
@@ -92,7 +92,7 @@ namespace itertools {
                     b_startPointer++;
                     return tmp;
                 }
-            }
+            }*/
 
             bool operator==(const iterator &it) const {
                 return (a_startPointer == it.a_startPointer || b_startPointer == it.b_startPointer);
@@ -106,10 +106,10 @@ namespace itertools {
 
         //end of class iterator
 
-        iterator begin() {
+        iterator begin() const {
             return iterator{ a,b };
         }
-        iterator end() {
+        iterator end() const {
             return iterator{ a,b , false};
         }
 
@@ -120,7 +120,7 @@ namespace itertools {
         const iterator end() const{
             return iterator{a,b , false};
         }*/
-        int  length(){
+        int  length() const {
             auto itStartA = a.begin();
             auto itEndA = a.end();
             auto itStartB = b.begin();
