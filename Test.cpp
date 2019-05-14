@@ -19,6 +19,7 @@ string iterable_to_string( Iterable& iterable) {
     return ostr.str();
 }
 int main() {
+
     badkan::TestCase testcase;
     int grade = 0;
     int signal = setjmp(badkan::longjmp_buffer);
@@ -26,6 +27,7 @@ int main() {
 
 
         //              ===========RANGE ==============
+
         itRange<int> intRange(3, 7);
         itRange<int> intRange2(-1,3);
         auto it1 = intRange.begin();
@@ -36,22 +38,28 @@ int main() {
         itRange<char> charRange2('f','h');
         itRange<char> charRange3('d','g');
 
+
         //              ===========chain ==============
         itChain<itRange<int>,itRange<int>> chain1(intRange,intRange2);
         itChain<itRange<char>,string> chain4(charRange,"yuvaldvir");
         itChain<string,itRange<char>> chain5("yuvaldvir",charRange2);
+
         //              ===========ZIP ==============
         itZip<itRange<int>,string> zip1(intRange,"cpp5");
         itZip<itRange<double>,string> zip2(doubleRange,"yuval");
         itZip<itRange<char>,string> zip3(charRange,"dvi");
         itZip<itZip<itRange<int>,string>,itZip<itRange<double>,string>> zipOfZip(zip1,zip2);
+
         //              ===========PROUDCT ==============
         itProduct<itRange<int>,string> proudct1(intRange,"yuval");
         itProduct<itRange<double>,string> proudct2(doubleRange,"Dvir");
         itProduct<string,string> proudct3("yuval","dvir");
+
+
         //              ===========POWERSET ==============
         /* itPowerSet<itRange<int>> powerSet1(intRange);
-         itPowerSet<itRange<char>> powerSet2(charRange3);*/
+         itPowerSet<itRange<char>> powerSet2(charRange3);
+        */
 
 
 

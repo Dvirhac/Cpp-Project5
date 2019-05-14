@@ -8,4 +8,6 @@ add_executable(Cpp_Project5
         powerset.hpp
         product.hpp
         range.hpp
-        zip.hpp Test.cpp badkan.hpp)
+        zip.hpp
+        Demo.cpp
+        badkan.hpp)
