@@ -50,7 +50,7 @@ int main() {
     for (char i: chain(range('a','e'), string("hello")))
         cout << i;    // abcdhello
 
-    cout << endl << endl << "Zip a range of ints and a string (must be of the same size)" << endl;
+    cout << endl << endl << "Zip a range of ints and a string (must be of the same length)" << endl;
     for (auto pair: zip(range(1,6), string("hello")))
         cout << pair << "  ";    // 1,h  2,e  3,l  4,l  5,o
     cout << endl << endl << "Zip of zips" << endl;
@@ -165,7 +165,7 @@ int main() {
        for (char i: chain(range('a','e'), string("hello")))
            cout << i;    // abcdllo
 
-       cout << endl << endl << "Zip a range of ints and a string (must be of the same size)" << endl;
+       cout << endl << endl << "Zip a range of ints and a string (must be of the same length)" << endl;
        for (auto pair: zip(range(1,6), string("hello")))
           cout << pair << "  ";    // 1,h  2,e  3,l  4,l  5,o
        cout << endl << endl << "Zip of zips" << endl;

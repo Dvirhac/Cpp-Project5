@@ -6,18 +6,19 @@
 #define CPP_PROJECT5_PRODUCT_HPP
 
 #include "utility"
+#include "zip.hpp"
 #include "ostream"
 
 namespace itertools {
     template <typename T, typename Z>
-    class itProduct {
+    class product {
 
     public:
         const T a ;
         const Z b;
-        itProduct(T a , Z b)
+        product(T a , Z b)
                 :a(a),b(b){}
-        itProduct()
+        product()
         {}
 
         // begin of class iterator
@@ -102,8 +103,8 @@ namespace itertools {
     };
 
     template<typename T, typename Z>
-    itProduct<T, Z> product(T a, Z b) {
-        return itProduct<T,Z>(a, b);
+    product<T, Z> productC(T a, Z b) {
+        return product<T,Z>(a, b);
     }
 
 

@@ -6,18 +6,18 @@
 #ifndef CPP_PROJECT5_CHAIN_HPP
 #define CPP_PROJECT5_CHAIN_HPP
 
-
+#include "range.hpp"
 namespace itertools {
     template <typename T, typename Z>
-    class itChain {
+    class chain {
 
     public:
         const T a;
         const Z b;
 
-        itChain(const T& a , const Z& b)
+        chain(const T& a , const Z& b)
                 :a(a),b(b){}
-        itChain()
+        chain()
         {}
 
         // begin of class iterator
@@ -110,8 +110,8 @@ namespace itertools {
     };
 
     template<typename T, typename Z>
-    itChain<T, Z> chain(T a, Z b) {
-        return itChain<T,Z>(a, b);
+    chain<T, Z> itChain(T a, Z b) {
+        return chain<T,Z>(a, b);
     }
 
 }

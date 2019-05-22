@@ -8,17 +8,18 @@
 #include <iostream>
 #include "utility"
 #include "ostream"
+#include "chain.hpp"
 namespace itertools {
     template <typename T, typename Z>
-    class itZip {
+    class zip {
 
     public:
         const T a ;
         const Z b;
 
-        itZip(const T& a ,const Z& b)
+        zip(const T& a ,const Z& b)
                 :a(a),b(b){}
-        itZip()
+        zip()
         {}
 
 
@@ -98,8 +99,8 @@ namespace itertools {
     };
 
     template<typename T, typename Z>
-    itZip<T, Z> zip(T a, Z b) {
-        return itZip<T,Z>(a, b);
+    zip<T, Z> zipC(T a, Z b) {
+        return zip<T,Z>(a, b);
     }
 
 
