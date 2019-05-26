@@ -15,7 +15,7 @@ namespace itertools {
     using namespace std;
 
     template<typename T>
-    class range {
+    class itRange {
 
         typedef T pointer;
 
@@ -24,7 +24,7 @@ namespace itertools {
         const T a;
         const T b;
 
-        range(const T& a,const T& b)
+        itRange(const T& a,const T& b)
                 : a(a), b(b) {}
 
     public:
@@ -91,8 +91,8 @@ namespace itertools {
     };
 
     template<typename T>
-    range<T> rangeC(T a, T b) {
-        return range<T>(a, b);
+    itRange<T> range(T a, T b) {
+        return itRange<T>(a, b);
     }
 
 

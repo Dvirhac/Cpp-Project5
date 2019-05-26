@@ -11,14 +11,14 @@
 
 namespace itertools {
     template <typename T, typename Z>
-    class product {
+    class itProduct {
 
     public:
         const T a ;
         const Z b;
-        product(T a , Z b)
+        itProduct(T a , Z b)
                 :a(a),b(b){}
-        product()
+        itProduct()
         {}
 
         // begin of class iterator
@@ -103,8 +103,8 @@ namespace itertools {
     };
 
     template<typename T, typename Z>
-    product<T, Z> productC(T a, Z b) {
-        return product<T,Z>(a, b);
+    itProduct<T, Z> product(T a, Z b) {
+        return itProduct<T,Z>(a, b);
     }
 
 

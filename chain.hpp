@@ -9,15 +9,15 @@
 #include "range.hpp"
 namespace itertools {
     template <typename T, typename Z>
-    class chain {
+    class itChain {
 
     public:
         const T a;
         const Z b;
 
-        chain(const T& a , const Z& b)
+        itChain(const T& a , const Z& b)
                 :a(a),b(b){}
-        chain()
+        itChain()
         {}
 
         // begin of class iterator
@@ -110,8 +110,8 @@ namespace itertools {
     };
 
     template<typename T, typename Z>
-    chain<T, Z> itChain(T a, Z b) {
-        return chain<T,Z>(a, b);
+    itChain<T, Z> chain(T a, Z b) {
+        return itChain<T,Z>(a, b);
     }
 
 }

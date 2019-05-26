@@ -16,7 +16,7 @@
 
 namespace itertools {
     template<typename T>
-    class powerset {
+    class itPowerSet {
 
     public:
 
@@ -24,12 +24,12 @@ namespace itertools {
         int numOfSubsets;
 
 
-        powerset(const T& a)
+        itPowerSet(const T& a)
                 : a(a) {
             numOfSubsets = pow(2, a.length());
         }
 
-        powerset() {}
+        itPowerSet() {}
 
         // begin of class iterator
 
@@ -50,7 +50,8 @@ namespace itertools {
                     a_saveStart(a.begin()),
                     length(a.length())
 
-            {begin = num;
+            {
+                begin = num;
                 finish = pow(2,a.length());
             }
 
@@ -111,8 +112,8 @@ namespace itertools {
     };
 
     template<typename T>
-    powerset<T> powersetC( T a) {
-        return powerset<T>(a);
+    itPowerSet<T> powerSet( T a) {
+        return itPowerSet<T>(a);
     }
 
 };

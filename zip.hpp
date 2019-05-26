@@ -11,15 +11,15 @@
 #include "chain.hpp"
 namespace itertools {
     template <typename T, typename Z>
-    class zip {
+    class itZip {
 
     public:
         const T a ;
         const Z b;
 
-        zip(const T& a ,const Z& b)
+        itZip(const T& a ,const Z& b)
                 :a(a),b(b){}
-        zip()
+        itZip()
         {}
 
 
@@ -99,8 +99,8 @@ namespace itertools {
     };
 
     template<typename T, typename Z>
-    zip<T, Z> zipC(T a, Z b) {
-        return zip<T,Z>(a, b);
+    itZip<T, Z> zip(T a, Z b) {
+        return itZip<T,Z>(a, b);
     }
 
 
