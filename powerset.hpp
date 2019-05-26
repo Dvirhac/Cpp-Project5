@@ -47,36 +47,36 @@ namespace itertools {
 
             iterator(const T& a,int num) :
                     a_startPointer(a.begin()),
-                    a_saveStart(a.begin()),
-                    length(a.length())
+                    a_saveStart(a.begin())
 
             {
                 begin = num;
                 finish = pow(2,a.length());
+                length = a.length();
             }
 
 
-            iterator() {}
+            //iterator() {}
 
             auto operator*() {
-                string subSet = "";
+                subset = "";
                 if(begin != finish) {
-                    subSet += "{";
+                    subset += "{";
                     for (int i = 0; i < length; ++i) {
                         if ((begin & (1 << i))) {
                             if (*a_startPointer <= 'z' && *a_startPointer >= 'a') {
-                                subSet += *a_startPointer;
+                                subset += *a_startPointer;
 
                             } else {
-                                subSet += to_string(*a_startPointer);
+                                subset += to_string(*a_startPointer);
                             }
-                            subSet += ",";
+                            subset += ",";
                         }
                         ++a_startPointer;
                     }
 
-                    if (subset.back() == ',') subSet = subSet.substr(0, subSet.size() - 1);
-                    subSet += '}';
+                    if (subset.back() == ',') subset = subset.substr(0, subset.size() - 1);
+                    subset += '}';
                 }
 
                 return subset;
@@ -94,7 +94,7 @@ namespace itertools {
             }
 
             bool operator!=(const iterator &it) const {
-                return (begin == it.begin);
+                return !(this->begin == it.begin);
             }
 
         };
@@ -112,7 +112,7 @@ namespace itertools {
     };
 
     template<typename T>
-    itPowerSet<T> powerSet( T a) {
+    itPowerSet<T> powerset( T a) {
         return itPowerSet<T>(a);
     }
 
