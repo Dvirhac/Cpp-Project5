@@ -43,7 +43,8 @@ namespace itertools {
             {}
 
             iterator(const T& a,const  Z& b,int i)
-                    :a_startPointer(a.end()),
+                    :saveFirst(b.begin()),
+                     a_startPointer(a.end()),
                      a_endPointer(a.end()),
                      b_startPointer(b.end()),
                      b_endPointer(b.end())
@@ -51,8 +52,8 @@ namespace itertools {
 
             {}
 
-            iterator()
-            {}
+            /* iterator()
+             {}*/
 
             auto operator*() const {
 
@@ -61,10 +62,7 @@ namespace itertools {
             }
 
             iterator& operator++() {
-                if (a_startPointer != a_endPointer){
-                    ++b_startPointer;
-
-                }
+                ++b_startPointer;
 
                 if (b_startPointer == b_endPointer){
                     b_startPointer = saveFirst;
@@ -95,7 +93,7 @@ namespace itertools {
 
         }
 
-        int  length(){
+        int  length() const {
             return  a.length() + b.length();
         }
 

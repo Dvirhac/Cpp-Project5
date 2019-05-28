@@ -29,8 +29,6 @@ namespace itertools {
             numOfSubsets = pow(2, a.length());
         }
 
-        itPowerSet() {}
-
         // begin of class iterator
 
         class iterator {
@@ -42,7 +40,7 @@ namespace itertools {
             int finish;
             int length;
             int begin;
-            string subset;
+            string subset = " ";
 
 
             iterator(const T& a,int num) :
@@ -56,11 +54,9 @@ namespace itertools {
             }
 
 
-            //iterator() {}
+            auto operator*() const {
 
-            auto operator*() {
-                subset = "";
-                if(begin != finish) {
+            /*    if(begin != finish) {
                     subset += "{";
                     for (int i = 0; i < length; ++i) {
                         if ((begin & (1 << i))) {
@@ -77,24 +73,24 @@ namespace itertools {
 
                     if (subset.back() == ',') subset = subset.substr(0, subset.size() - 1);
                     subset += '}';
-                }
+                }*/
 
                 return subset;
             }
 
             iterator& operator++() {
-                begin++;
-                a_startPointer = a_saveStart;
+              /*  begin++;
+                a_startPointer = a_saveStart;*/
                 return *this;
             }
 
             bool operator==(const iterator &it) const {
-                return (a_startPointer == it.a_startPointer);
+                return true;
 
             }
 
             bool operator!=(const iterator &it) const {
-                return !(this->begin == it.begin);
+                return false;
             }
 
         };

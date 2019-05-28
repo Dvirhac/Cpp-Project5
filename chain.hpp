@@ -47,9 +47,9 @@ namespace itertools {
             {}
 
 
-            iterator()
+           /* iterator()
             {}
-
+*/
             auto operator*() const {
                 if (a_startPointer != a_endPointer)
                     return *a_startPointer;
