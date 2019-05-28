@@ -53,8 +53,8 @@ namespace itertools {
                      b_endPointer(b.end())
             {}
 
-            iterator()
-            {}
+            /*iterator()
+            {}*/
 
             auto operator*() const {
 
@@ -91,7 +91,7 @@ namespace itertools {
 
         }
 
-        int  length(){
+        int  length() const {
             return  a.length() + b.length();
         }
 
